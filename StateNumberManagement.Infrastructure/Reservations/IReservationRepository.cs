@@ -8,5 +8,6 @@ namespace StateNumberManagement.Infrastructure.Reservations
     {
         Task<bool> NumberExistsAsync(string number, CancellationToken token);
         Task<PaginatedList<StateNumberReservation>> GetAllAsync(SearchParameters parameters, CancellationToken token);
+        Task<StateNumberReservation> GetByNumber(string number, CancellationToken token);
     }
 }

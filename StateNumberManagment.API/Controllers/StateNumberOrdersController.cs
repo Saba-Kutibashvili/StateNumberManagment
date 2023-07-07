@@ -24,7 +24,7 @@ namespace StateNumberManagment.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] SearchParameters parameter, CancellationToken token)
         {
-            return Ok(await _service.GetAllAsync(token));
+            return Ok(await _service.GetAllAsync(parameter, token));
         }
 
         /// <summary>

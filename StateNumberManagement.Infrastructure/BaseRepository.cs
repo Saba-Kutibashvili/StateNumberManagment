@@ -26,7 +26,7 @@ namespace StateNumberManagement.Infrastructure
         {
             await _table.AddAsync(entity, token);
 
-            await _context.SaveChangesAsync(token);
+            await Save(token);
         }
 
         public abstract Task<T> GetAsync(string Id, CancellationToken token);
@@ -40,13 +40,18 @@ namespace StateNumberManagement.Infrastructure
         {
             _table.Update(entity);
 
-            await _context.SaveChangesAsync(token);
+            await Save(token);
         }
 
         public async Task DeleteAsync(string Id, CancellationToken token)
         {
             _table.Remove(await GetAsync(Id, token));
 
+            await Save(token);
+        }
+
+        protected async Task Save(CancellationToken token)
+        {
             await _context.SaveChangesAsync(token);
         }
     }

@@ -1,6 +1,8 @@
-﻿using StateNumberManagement.Application.Orders;
+﻿using StateNumberManagement.Application;
+using StateNumberManagement.Application.Orders;
 using StateNumberManagement.Application.StateNumberReservations;
 using StateNumberManagement.Application.StateNumbers;
+using StateNumberManagement.Infrastructure;
 using StateNumberManagement.Infrastructure.Orders;
 using StateNumberManagement.Infrastructure.Reservations;
 using StateNumberManagement.Infrastructure.StateNumbers;
@@ -19,6 +21,8 @@ namespace StateNumberManagment.API.Infrastructure
 
             services.AddScoped<IReservationService, ReservationService>();
             services.AddScoped<IReservationRepository, ReservationRepository>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
     }
 }

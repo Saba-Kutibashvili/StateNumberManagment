@@ -48,5 +48,10 @@ namespace StateNumberManagement.Infrastructure.Orders
 
             return await PaginatedList<StateNumberOrder>.CreateAsync(results, parameters.PageIndex, 2);
         }
+
+        public async Task<StateNumberOrder> GetByNumber(string number, CancellationToken token)
+        {
+            return await Table.FirstOrDefaultAsync(x => x.Number == number, token);
+        }
     }
 }

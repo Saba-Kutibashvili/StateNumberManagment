@@ -38,10 +38,26 @@ namespace StateNumberManagment.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id, CancellationToken token)
         {
-            throw new NotImplementedException("This mothod si not implemented yer");
             var result = await _service.GetAsync(id, token);
 
             if(result ==  null)
+                return NotFound();
+
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// Get state number details with order and reservation by ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        [HttpGet("/details/{id}")]
+        public async Task<IActionResult> GetDetails(string id, CancellationToken token)
+        {
+            var result = await _service.GetDetailsOnStateNumber(id, token);
+
+            if (result == null)
                 return NotFound();
 
             return Ok(result);

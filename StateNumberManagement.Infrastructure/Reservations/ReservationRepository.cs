@@ -48,5 +48,10 @@ namespace StateNumberManagement.Infrastructure.Reservations
 
             return await PaginatedList<StateNumberReservation>.CreateAsync(results, parameters.PageIndex, 2);
         }
+
+        public async Task<StateNumberReservation> GetByNumber(string number, CancellationToken token)
+        {
+            return await Table.FirstOrDefaultAsync(x => x.Number == number, token);
+        }
     }
 }
